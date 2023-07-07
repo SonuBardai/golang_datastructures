@@ -3,112 +3,112 @@ package linkedlists
 import "fmt"
 
 type DoublyNode struct {
-	val  int
+	Val  int
 	next *DoublyNode
 	prev *DoublyNode
 }
 
-func NewDoublyNode(val int) *DoublyNode {
+func NewDoublyNode(Val int) *DoublyNode {
 	return &DoublyNode{
-		val:  val,
+		Val:  Val,
 		next: nil,
 		prev: nil,
 	}
 }
 
 type DoublyLinkedList struct {
-	head   *DoublyNode
-	tail   *DoublyNode
-	length int
+	Head   *DoublyNode
+	Tail   *DoublyNode
+	Length int
 }
 
-func NewDoublyLinkedList(val *int) DoublyLinkedList {
-	if val == nil {
-		return DoublyLinkedList{head: nil, tail: nil, length: 0}
+func NewDoublyLinkedList(Val *int) DoublyLinkedList {
+	if Val == nil {
+		return DoublyLinkedList{Head: nil, Tail: nil, Length: 0}
 	}
-	newNode := NewDoublyNode(*val)
+	newNode := NewDoublyNode(*Val)
 	return DoublyLinkedList{
-		head:   newNode,
-		tail:   newNode,
-		length: 1,
+		Head:   newNode,
+		Tail:   newNode,
+		Length: 1,
 	}
 }
 
-func (l *DoublyLinkedList) InsertStartDoubly(val int) {
-	newNode := NewDoublyNode(val)
-	if l.head == nil {
-		l.head = newNode
-		l.tail = newNode
+func (l *DoublyLinkedList) InsertStartDoubly(Val int) {
+	newNode := NewDoublyNode(Val)
+	if l.Head == nil {
+		l.Head = newNode
+		l.Tail = newNode
 	} else {
-		newNode.next = l.head
-		l.head.prev = newNode
-		l.head = newNode
+		newNode.next = l.Head
+		l.Head.prev = newNode
+		l.Head = newNode
 	}
-	l.length++
+	l.Length++
 }
 
-func (l *DoublyLinkedList) InsertEndDoubly(val int) {
-	newNode := NewDoublyNode(val)
-	if l.tail == nil {
-		l.head = newNode
-		l.tail = newNode
+func (l *DoublyLinkedList) InsertEndDoubly(Val int) {
+	newNode := NewDoublyNode(Val)
+	if l.Tail == nil {
+		l.Head = newNode
+		l.Tail = newNode
 	} else {
-		l.tail.next = newNode
-		newNode.prev = l.tail
-		l.tail = newNode
+		l.Tail.next = newNode
+		newNode.prev = l.Tail
+		l.Tail = newNode
 	}
-	l.length++
+	l.Length++
 }
 
 func (l *DoublyLinkedList) DeleteStartDoubly() {
-	if l.head != nil {
-		l.head = l.head.next
-		if l.head != nil {
-			l.head.prev = nil
+	if l.Head != nil {
+		l.Head = l.Head.next
+		if l.Head != nil {
+			l.Head.prev = nil
 		} else {
-			l.tail = nil
+			l.Tail = nil
 		}
-		l.length--
+		l.Length--
 	}
 }
 
 func (l *DoublyLinkedList) DeleteEndDoubly() {
-	if l.tail != nil {
-		l.tail = l.tail.prev
-		if l.tail != nil {
-			l.tail.next = nil
+	if l.Tail != nil {
+		l.Tail = l.Tail.prev
+		if l.Tail != nil {
+			l.Tail.next = nil
 		} else {
-			l.head = nil
+			l.Head = nil
 		}
-		l.length--
+		l.Length--
 	}
 }
 
 func (l *DoublyLinkedList) PrintDoublyForward() {
-	pointer := l.head
-	if l.head != nil {
-		fmt.Print("(head) nil <- ")
-		fmt.Print(pointer.val)
+	pointer := l.Head
+	if l.Head != nil {
+		fmt.Print("(Head) nil <- ")
+		fmt.Print(pointer.Val)
 		for pointer.next != nil {
 			pointer = pointer.next
-			fmt.Print(" <-> ", pointer.val)
+			fmt.Print(" <-> ", pointer.Val)
 		}
-		fmt.Println(" -> nil (tail)")
+		fmt.Println(" -> nil (Tail)")
 	} else {
 		fmt.Println("Doubly Linked list is empty")
 	}
 }
 
 func (l *DoublyLinkedList) PrintDoublyBackward() {
-	pointer := l.tail
-	if l.tail != nil {
-		fmt.Print("(tail) nil <- ")
-		fmt.Print(pointer.val)
+	pointer := l.Tail
+	if l.Tail != nil {
+		fmt.Print("(Tail) nil <- ")
+		fmt.Print(pointer.Val)
 		for pointer.prev != nil {
 			pointer = pointer.prev
-			fmt.Print(" <-> ", pointer.val)
+			fmt.Print(" <-> ", pointer.Val)
 		}
-		fmt.Println(" -> nil (head)")
+		fmt.Println(" -> nil (Head)")
 	} else {
 		fmt.Println("Doubly Linked list is empty")
 	}
