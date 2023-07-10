@@ -1,3 +1,1 @@
-Implementing DataStructures in GoLang
-
-Youtube: 
+# Implementing DataStructures in GoLang
