@@ -1,6 +1,6 @@
 package main
-import "github.com/SonuBardai/golang_datastructures/stackqueue"
+import "github.com/SonuBardai/golang_datastructures/tree"
 
 func main() {
-	stackqueue.TestQueueLinked()
+	tree.TestBinaryTree()
 }
