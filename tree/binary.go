@@ -24,6 +24,10 @@ func NewBinaryTree(val *int) BinaryTree {
 }
 
 func (t *BinaryTree) InsertBinaryTree(val *int) {
+	if t.Root == nil {
+		t.Root = NewBinaryTreeNode(val)
+		return
+	}
 	queue := stackqueue.NewQueueVec(make([]interface{}, 0), 0, false)
 	queue.EnVec(t.Root)
 	for len(queue.Data) > 0 {
@@ -40,6 +44,33 @@ func (t *BinaryTree) InsertBinaryTree(val *int) {
 		} else {
 			queue.EnVec(current.RightChild)
 		}
+	}
+}
+
+func (t *BinaryTree) DeleteDeepestRightmost() {
+	if t.Root == nil {
+		fmt.Println("Tree is empty!")
+		return
+	}
+	queue := stackqueue.NewQueueVec(make([]interface{}, 0), 0, false)
+	queue.EnVec(t.Root)
+	var current *BinaryTreeNode
+	var prev *BinaryTreeNode
+	for len(queue.Data) > 0 {
+		current = queue.DeVec().(*BinaryTreeNode)
+		if current.LeftChild != nil {
+			queue.EnVec(current.LeftChild)
+			prev = current
+		}
+		if current.RightChild != nil {
+			queue.EnVec(current.RightChild)
+			prev = current
+		}
+	}
+	if prev.RightChild != nil {
+		prev.RightChild = nil
+	} else {
+		prev.LeftChild = nil
 	}
 }
 
