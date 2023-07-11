@@ -94,6 +94,53 @@ func (t *BinaryTree) PrintBinaryTree() {
 	fmt.Print("\n\n")
 }
 
+type BinaryTreeTraversalType int
+
+const (
+	PreOrder BinaryTreeTraversalType = iota
+	InOrder
+	PostOrder
+)
+
+func preOrderBinaryTree(node *BinaryTreeNode) {
+	if node == nil {
+		return
+	}
+	fmt.Print(node.Val)
+	preOrderBinaryTree(node.LeftChild)
+	preOrderBinaryTree(node.RightChild)
+}
+func inOrderBinaryTree(node *BinaryTreeNode) {
+	if node == nil {
+		return
+	}
+	inOrderBinaryTree(node.LeftChild)
+	fmt.Print(node.Val)
+	inOrderBinaryTree(node.RightChild)
+}
+func postOrderBinaryTree(node *BinaryTreeNode) {
+	if node == nil {
+		return
+	}
+	postOrderBinaryTree(node.LeftChild)
+	postOrderBinaryTree(node.RightChild)
+	fmt.Print(node.Val)
+}
+
+func (t *BinaryTree) TraverseBinaryTree(treeTraversalType BinaryTreeTraversalType) {
+	switch treeTraversalType {
+	case PreOrder:
+		preOrderBinaryTree(t.Root)
+		return
+	case InOrder:
+		inOrderBinaryTree(t.Root)
+		return
+	case PostOrder:
+		postOrderBinaryTree(t.Root)
+		return
+	}
+}
+
 func TestBinaryTree() {
 	rootValue := 1
 	binaryTree := NewBinaryTree(&rootValue)
